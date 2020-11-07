@@ -1,0 +1,177 @@
+.header-area {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    background-color: #fff;
+}
+
+.header-area .newsbox-main-menu {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    padding: 0 0 0 5%;
+    height: 75px;
+}
+
+.classy-nav-container {
+    position: relative;
+    z-index: 100;
+    background-color: #ffffff;
+    height: 60px;
+}
+
+.header-area .newsbox-main-menu .classy-navbar {
+    height: 125px;
+    padding: 0;
+}
+
+.classy-navbar {
+    width: 100%;
+    height: 70px;
+    padding: 0.5em 2em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+}
+
+.classy-nav-container a {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    text-decoration: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #232323;
+    display: inline-block;
+}
+
+.classy-navbar-toggler {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: none;
+}
+
+.header-area .newsbox-main-menu .classy-navbar .nav-brand {
+    max-width: 160px;
+    margin-right: 30px;
+}
+
+.classy-navbar .nav-brand {
+    font-size: 26px;
+    font-weight: 500;
+    color: #565656;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.logo-text.logo-hidden {
+    border-bottom: 1px solid #fff;
+}
+
+.logo-text {
+    transform: translateX(-50%) translateY(-50%);
+    list-style: none;
+    border-bottom: 0;
+}
+
+.logo-text li {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1em;
+    color: #000;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+    max-width: 2em;
+}
+
+.logo-text.logo-hidden li.spaced {
+    padding-left: 0;
+}
+
+.logo-text.logo-hidden li.ghost {
+    opacity: 0;
+    max-width: 0;
+}
+
+.classy-navbar-toggler .navbarToggler {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.classy-navbar .nav-brand:focus, .classy-navbar .nav-brand:hover {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.breakpoint-off .classynav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+}
+
+.classycloseIcon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 12;
+    display: none;
+}
+
+.classycloseIcon .cross-wrap span.top {
+    top: 12px;
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.classycloseIcon .cross-wrap span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 6px;
+    background: #232323;
+}
+
+.classycloseIcon .cross-wrap span.bottom {
+    bottom: 12px;
+    left: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.classynav ul li {
+    display: inline-block;
+    clear: both;
+    position: inherit;
+    z-index: 10;
+}
+
+.header-area .newsbox-main-menu .classy-navbar .classynav ul li a {
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 0 10px;
+    color: #404040;
+}
+
+.classynav ul li a {
+    padding: 0 12px;
+    display: block;
+    height: 35px;
+    font-size: 14px;
+    line-height: 34px;
+}
+
+.header-area .newsbox-main-menu .classy-navbar .classynav ul li a:hover, .header-area .newsbox-main-menu .classy-navbar .classynav ul li a:focus {
+    color: #ef1b48;
+}

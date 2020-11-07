@@ -1,0 +1,44 @@
+.my-form-input-control {
+    padding-bottom: 5px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 30px;
+    line-height: 1.5;
+    color: #212529;
+    outline: none;
+}
+
+.my-form-label-control {
+    position: absolute;
+    top: -5px;
+    color: rgba(0, 0, 0, 0.7);
+    transition-duration: .25s;
+}
+
+.my-place-bottom-line {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+    height: 2px;
+    position: absolute;
+}
+
+.my-bottom-line-left, .my-bottom-line-right {
+    height: 2px;
+    width: 0px;
+    background-color: #8b9dc3;
+    display: inline-block;
+    position: absolute;
+}
+
+.my-bottom-line-left {
+    right: 50%;
+}
+
+.my-bottom-line-right {
+    left: 50%;
+}

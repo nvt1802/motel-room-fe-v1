@@ -1,0 +1,163 @@
+body {
+    background-color: #f8f8f8;
+}
+
+a {
+    font-weight: 400;
+}
+
+#wrapper {
+    width: 100%;
+}
+
+#content {
+    min-height: 550px;
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 10px;
+    border-left: 1px solid #e7e7e7;
+    background-color: #fff;
+}
+
+#content .card {
+    margin-bottom: 5px;
+}
+
+.navbar {
+    background-color: #f8f8f8;
+    z-index: 1000;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    top: 57px;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f8f8f8;
+}
+
+.sidebar .nav .nav-item {
+    border-bottom: 1px solid #e7e7e7;
+    position: relative;
+    display: block;
+}
+
+.sidebar .nav .nav-item a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.sidebar .nav .nav-item a .arrow {
+    float: right;
+    margin-top: 4px;
+}
+
+.sidebar .nav .nav-item a .arrow:before {
+    content: "\f104";
+}
+
+.sidebar .nav .nav-item a.active,
+.sidebar .nav .nav-item a:hover {
+    text-decoration: none;
+    background-color: #424141;
+    color: #fefeff;
+}
+
+.sidebar .nav .nav-item a.active .arrow:before {
+    content: "\f107";
+}
+
+.sidebar .nav-second-level {
+    padding: 0;
+}
+
+.sidebar .nav-second-level .nav-item {
+    border-bottom: none !important;
+}
+
+.sidebar .nav-second-level .nav-item a {
+    padding: 5px 5px 5px 40px;
+}
+
+.sidebar .sidebar-search {
+    padding: 15px;
+}
+
+.responsive-sm {
+    display: none;
+}
+
+.responsive-lg {
+    display: block;
+}
+
+@media screen and (max-width: 700px) {
+    .responsive-sm {
+        display: block;
+    }
+    .responsive-lg {
+        display: none;
+    }
+    .sidebar {
+        width: 40px;
+    }
+    #content {
+        margin: 0 0 0 45px;
+    }
+}
+
+#image_holder img {
+    width: 140px;
+    height: 100%;
+    margin-left: 3px;
+    border: solid 1px #ccc;
+    padding: 3px;
+}
+
+#boxImg>div {
+    max-height: 210px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.btn-remove-image {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.list-image {
+    position: relative;
+}
+
+.list-image:hover>.btn-remove-image {
+    display: block;
+}
+
+#avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-image: url("https://www.freecodecamp.org/news/content/images/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png");
+    background-position: top;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+#btn-upload-avatar {
+    display: none;
+    position: absolute;
+    top: 35%;
+    left: 45%;
+}
+
+#avatar:hover>#btn-upload-avatar {
+    display: block;
+}

@@ -1,0 +1,97 @@
+.body-content {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+
+/* Override a:hover, :focus */
+
+.my-btn-default:hover,
+ :focus {
+    font-weight: normal;
+    font-size: inherit !important;
+}
+
+.my-sign-up-form {
+    padding: 10px 30px;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.form-bounded {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.form-bounded .form-control {
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.form-bounded label {
+    background-color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 20px;
+    transition-duration: .25s;
+    margin: 0px;
+}
+
+.row {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.row .form-bounded {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.form-control {
+    border: solid 1px #ddd;
+    font-size: inherit;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control-invalid:focus {
+    outline: 0 !important;
+    border: 2px solid #ef1b48;
+    box-shadow: 0 0 10px #ef1b48;
+}
+
+.show-password-icon {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .body-content {
+        padding: 0 !important;
+    }
+    .my-sign-up-form {
+        border-radius: 0 !important;
+    }
+    .form-bounded {
+        padding: 0;
+    }
+    .row .form-bounded {
+        margin-bottom: 10px;
+    }
+    .row .form-bounded:last-child {
+        margin-bottom: 0;
+    }
+}
