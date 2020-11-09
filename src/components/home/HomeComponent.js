@@ -7,9 +7,6 @@ import FormatNumber from '../../common/FormatNumber'
 
 export default function Home(props) {
 
-    const [postLatest, setPostLatest] = useState([])
-    const [postCommon, setPostCommon] = useState([])
-    const [postCheap, setPostCheap] = useState([])
     const [pageIndexLatest, setPageIndexLatest] = useState(0)
     const [totalPageLatest, setTotalPageLatest] = useState(0)
     const [pageIndexCommon, setPageIndexCommon] = useState(0)
@@ -19,21 +16,21 @@ export default function Home(props) {
 
     const getPostLatest = (pageCommon) => {
         DiscoverAPI.discoverLatest(pageCommon).then(res => {
-            setPostLatest(res.data)
+            props.initPostLatest(res.data)
             setTotalPageLatest(res.data.totalPages)
         })
     }
 
     const getPostCommon = (pageCommon) => {
         DiscoverAPI.discoverCommon(pageCommon).then(res => {
-            setPostCommon(res.data)
+            props.initPostCommon(res.data)
             setTotalPageCommon(res.data.totalPages)
         })
     }
 
     const getPostCheap = (pageCommon) => {
         DiscoverAPI.discoverCheap(pageCommon).then(res => {
-            setPostCheap(res.data)
+            props.initPostCheap(res.data)
             setTotalPageCheap(res.data.totalPages)
         })
     }
@@ -43,9 +40,10 @@ export default function Home(props) {
             "page": 0,
             "pageSize": 6
         }
-        if (postLatest.length === 0) { getPostLatest(pageCommon) }
-        if (postCommon.length === 0) { getPostCommon(pageCommon) }
-        if (postCheap.length === 0) { getPostCheap(pageCommon) }
+        if (Object.keys(props.postLatest).length === 0) { getPostLatest(pageCommon) }
+        if (Object.keys(props.postCommon).length === 0) { getPostCommon(pageCommon) }
+        if (Object.keys(props.postCheap).length === 0) { getPostCheap(pageCommon) }
+        console.log("A");
     })
 
     const seeMorePostLatest = () => {
@@ -55,7 +53,7 @@ export default function Home(props) {
         }
         setPageIndexLatest(pageIndexLatest + 1)
         DiscoverAPI.discoverLatest(pageCommon).then(res => {
-            let listPostDtos = postLatest.listPostDtos
+            let listPostDtos = props.postLatest.listPostDtos
             res.data.listPostDtos.forEach(element => {
                 listPostDtos.push(element)
             })
@@ -64,7 +62,7 @@ export default function Home(props) {
                 totalPages: res.data.totalPages,
                 pageSize: res.data.pageSize
             }
-            setPostLatest(data)
+            props.initPostLatest(data)
             setTotalPageLatest(res.data.totalPages)
         })
     }
@@ -76,7 +74,7 @@ export default function Home(props) {
         }
         setPageIndexCommon(pageIndexCommon + 1)
         DiscoverAPI.discoverCommon(pageCommon).then(res => {
-            let listPostDtos = postCommon.listPostDtos
+            let listPostDtos = props.postCommon.listPostDtos
             res.data.listPostDtos.forEach(element => {
                 listPostDtos.push(element)
             })
@@ -85,7 +83,7 @@ export default function Home(props) {
                 totalPages: res.data.totalPages,
                 pageSize: res.data.pageSize
             }
-            setPostCommon(data)
+            props.initPostCommon(data)
             setTotalPageCommon(res.data.totalPages)
         })
     }
@@ -97,13 +95,13 @@ export default function Home(props) {
         }
         setPageIndexCheap(pageIndexCheap + 1)
         DiscoverAPI.discoverCheap(pageCommon).then(res => {
-            setPostCheap(res.data)
+            props.initPostCheap(res.data)
             setTotalPageCheap(res.data.totalPages)
         })
     }
 
     const renderPost = (post) => {
-        if (post.listPostDtos) {
+        if (Object.keys(post).length !== 0 && post.listPostDtos) {
             var elements = post.listPostDtos.map((value, index) => {
                 return (
                     <div className="col-12 col-sm-6 col-md-4" key={value.post.postId}>
@@ -167,7 +165,7 @@ export default function Home(props) {
                                 <div className="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav1">
                                     <div className="row">
                                         {/* Single News Area START*/}
-                                        {renderPost(postLatest)}
+                                        {renderPost(props.postLatest)}
                                         {/* Single News Area END*/}
                                         {pageIndexLatest < (totalPageLatest - 1) && (
                                             <div className="col-12">
@@ -183,7 +181,7 @@ export default function Home(props) {
                                 {/* Top pho bien nhat */}
                                 <div className="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav2">
                                     <div className="row">
-                                        {renderPost(postCommon)}
+                                        {renderPost(props.postCommon)}
                                         {pageIndexCommon < (totalPageCommon - 1) && (
                                             <div className="col-12">
                                                 <div className="d-flex justify-content-center">
@@ -197,7 +195,7 @@ export default function Home(props) {
                                 {/* Top gia re nhat */}
                                 <div className="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav3">
                                     <div className="row">
-                                        {renderPost(postCheap)}
+                                        {renderPost(props.postCheap)}
                                         {pageIndexCheap < (totalPageCheap - 1) && (
                                             <div className="col-12">
                                                 <div className="d-flex justify-content-center">

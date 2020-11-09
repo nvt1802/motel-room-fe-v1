@@ -35,3 +35,24 @@ export const initAuthenticate = (account, logged) => {
         logged: logged
     }
 }
+
+export const initPostLatest = (postLatest) => {
+    return {
+        type: actionTypes.INIT_POST_LATEST,
+        payload: postLatest
+    }
+}
+
+export const initPostCommon = (postCommon) => {
+    return {
+        type: actionTypes.INIT_POST_COMMON,
+        payload: postCommon
+    }
+}
+
+export const initPostCheap = (postCheap) => {
+    return {
+        type: actionTypes.INIT_POST_CHEAP,
+        payload: postCheap
+    }
+}
