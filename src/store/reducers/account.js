@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes'
 const account = (state = {}, action) => {
     switch (action.type) {
         case actionTypes.CREATE_ACCOUNT:
-            state = {
+            return {
                 accountId: action.accountId,
                 userName: action.payload.userName,
                 role: action.payload.role,
@@ -15,7 +15,6 @@ const account = (state = {}, action) => {
                 provinceId: action.payload.provinceId,
                 districtId: action.payload.districtId,
             }
-            return state
         default:
             return state
     }

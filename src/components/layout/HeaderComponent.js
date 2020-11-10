@@ -41,8 +41,8 @@ function Header(props) {
                                     </div>
                                     <div className="classynav">
                                         <ul>
-                                            {props.authenticate.logged && <UserLink account={props.authenticate.account} setLogged={props.setLogged}></UserLink>}
-                                            {!props.logged && (<>
+                                            {props.authenticate.logged && <UserLink account={props.authenticate.account} removeAuthenticate={props.removeAuthenticate}></UserLink>}
+                                            {!props.authenticate.logged && (<>
                                                 <li>
                                                     <Link to="/signUp" style={{ fontSize: 'unset' }}>Đăng ký</Link>
                                                 </li>
@@ -83,8 +83,8 @@ function Header(props) {
                                     </div>
                                     <div className="classynav">
                                         <ul>
-                                            {props.authenticate.logged && <UserLink account={props.authenticate.account}></UserLink>}
-                                            {!props.logged && (<>
+                                            {props.authenticate.logged && <UserLink account={props.authenticate.account} removeAuthenticate={props.removeAuthenticate}></UserLink>}
+                                            {!props.authenticate.logged && (<>
                                                 <li>
                                                     <Link to="/signUp" style={{ fontSize: 'unset' }}>Đăng ký</Link>
                                                 </li>

@@ -1,8 +1,13 @@
 import { connect } from 'react-redux'
 import Header from '../../components/layout/HeaderComponent'
+import { authenticate } from '../../store/actions/index'
 
 const mapStateToProps = state => ({
     authenticate: state.authenticate
 })
 
-export default connect(mapStateToProps, null)(Header)
+const mapDispatchToProps = (dispatch) => ({
+    removeAuthenticate: () => dispatch(authenticate.removeAuthenticate())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

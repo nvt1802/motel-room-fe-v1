@@ -27,10 +27,10 @@ function SearchAdvance(props) {
                     <div className="form-group col-sm-12 col-md-12">
                         <label className="mr-3" style={{ display: 'inline-block' }}>Mức giá tối đa : </label>
                         <p style={{ display: 'inline-block', fontSize: '20px', color: '#000' }}>
-                            <b id="notiprice">{FormatNumber.currencyformatter.format(props.price)}</b> (VNĐ)
+                            <b id="notiprice">{FormatNumber.currencyformatter.format(props.search.price)}</b> (VNĐ)
                                             </p>
                         <div className="slidecontainer" id="scrollPrice">
-                            <input onChange={handleChange} type="range" name="price" id="priceSlider" min={500000} max={3000000} step={100000} className="slider cursor" />
+                            <input onChange={handleChange} type="range" name="price" defaultValue={props.search.price} id="priceSlider" min={500000} max={3000000} step={100000} className="slider cursor" />
                         </div>
                     </div>
                 </div>
@@ -38,21 +38,20 @@ function SearchAdvance(props) {
                     <div className="form-group col-12">
                         <label style={{ display: 'inline-block' }}>Diện tích tối đa : </label>
                         <p className="mx-3" style={{ display: 'inline-block', fontSize: '20px', color: '#000' }}>
-                            <b id="notiarea">{props.acreage}</b> (m<sup>2</sup>)
+                            <b id="notiarea">{props.search.acreage}</b> (m<sup>2</sup>)
                                             </p>
                         <div className="slidecontainer" id="scrollArea">
-                            <input onChange={handleChange} type="range" name="acreage" id="areaSlider" min={10} max={50} step={5} className="slider cursor" />
+                            <input onChange={handleChange} type="range" name="acreage" defaultValue={props.search.acreage} id="areaSlider" min={10} max={50} step={5} className="slider cursor" />
                         </div>
                     </div>
                 </div>
                 <label>Các tiêu chí:</label>
                 <div style={{ overflowX: 'hidden', height: '120px' }}>
                     <div className="row">
-                        <Criteria optionAdvance={props.optionAdvance} listCriteria={props.listCriteria} setListCriteria={props.setListCriteria} />
+                        <Criteria criteria={props.criteria} setListCriteriaId={props.setListCriteriaId} optionAdvance={props.search.optionAdvance} listCriteriaId={new Set(props.search.listCriteriaId)} />
                     </div>
                 </div>
             </div>
-            <input hidden id="isSearchAdvance" type="number" disabled name="isSearchAdvance" defaultValue={props.optionAdvance} />
         </div>
     </>
 }

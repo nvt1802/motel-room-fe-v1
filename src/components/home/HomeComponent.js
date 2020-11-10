@@ -1,104 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import DiscoverAPI from '../../api/DiscoverAPI'
 import '../../assets/style/index.css'
 import { URL_IMAGE } from '../../common/Constant'
 import FormatNumber from '../../common/FormatNumber'
 
 export default function Home(props) {
-
-    const [pageIndexLatest, setPageIndexLatest] = useState(0)
-    const [totalPageLatest, setTotalPageLatest] = useState(0)
-    const [pageIndexCommon, setPageIndexCommon] = useState(0)
-    const [totalPageCommon, setTotalPageCommon] = useState(0)
-    const [pageIndexCheap, setPageIndexCheap] = useState(0)
-    const [totalPageCheap, setTotalPageCheap] = useState(0)
-
-    const getPostLatest = (pageCommon) => {
-        DiscoverAPI.discoverLatest(pageCommon).then(res => {
-            props.initPostLatest(res.data)
-            setTotalPageLatest(res.data.totalPages)
-        })
-    }
-
-    const getPostCommon = (pageCommon) => {
-        DiscoverAPI.discoverCommon(pageCommon).then(res => {
-            props.initPostCommon(res.data)
-            setTotalPageCommon(res.data.totalPages)
-        })
-    }
-
-    const getPostCheap = (pageCommon) => {
-        DiscoverAPI.discoverCheap(pageCommon).then(res => {
-            props.initPostCheap(res.data)
-            setTotalPageCheap(res.data.totalPages)
-        })
-    }
-
-    useEffect(() => {
-        const pageCommon = {
-            "page": 0,
-            "pageSize": 6
-        }
-        if (Object.keys(props.postLatest).length === 0) { getPostLatest(pageCommon) }
-        if (Object.keys(props.postCommon).length === 0) { getPostCommon(pageCommon) }
-        if (Object.keys(props.postCheap).length === 0) { getPostCheap(pageCommon) }
-        console.log("A");
-    })
-
-    const seeMorePostLatest = () => {
-        const pageCommon = {
-            "page": pageIndexLatest + 1,
-            "pageSize": 6
-        }
-        setPageIndexLatest(pageIndexLatest + 1)
-        DiscoverAPI.discoverLatest(pageCommon).then(res => {
-            let listPostDtos = props.postLatest.listPostDtos
-            res.data.listPostDtos.forEach(element => {
-                listPostDtos.push(element)
-            })
-            let data = {
-                listPostDtos: listPostDtos,
-                totalPages: res.data.totalPages,
-                pageSize: res.data.pageSize
-            }
-            props.initPostLatest(data)
-            setTotalPageLatest(res.data.totalPages)
-        })
-    }
-
-    const seeMorePostCommon = () => {
-        const pageCommon = {
-            "page": pageIndexCommon + 1,
-            "pageSize": 6
-        }
-        setPageIndexCommon(pageIndexCommon + 1)
-        DiscoverAPI.discoverCommon(pageCommon).then(res => {
-            let listPostDtos = props.postCommon.listPostDtos
-            res.data.listPostDtos.forEach(element => {
-                listPostDtos.push(element)
-            })
-            let data = {
-                listPostDtos: listPostDtos,
-                totalPages: res.data.totalPages,
-                pageSize: res.data.pageSize
-            }
-            props.initPostCommon(data)
-            setTotalPageCommon(res.data.totalPages)
-        })
-    }
-
-    const seeMorePostCheap = () => {
-        const pageCommon = {
-            "page": 0,
-            "pageSize": 6 * ((pageIndexCheap + 1) + 1)
-        }
-        setPageIndexCheap(pageIndexCheap + 1)
-        DiscoverAPI.discoverCheap(pageCommon).then(res => {
-            props.initPostCheap(res.data)
-            setTotalPageCheap(res.data.totalPages)
-        })
-    }
 
     const renderPost = (post) => {
         if (Object.keys(post).length !== 0 && post.listPostDtos) {
@@ -167,10 +73,10 @@ export default function Home(props) {
                                         {/* Single News Area START*/}
                                         {renderPost(props.postLatest)}
                                         {/* Single News Area END*/}
-                                        {pageIndexLatest < (totalPageLatest - 1) && (
+                                        {props.pageIndexLatest < (props.totalPageLatest - 1) && (
                                             <div className="col-12">
                                                 <div className="d-flex justify-content-center">
-                                                    <a href="/" onClick={(e) => { e.preventDefault(); seeMorePostLatest() }} className="text-center text-secondary font-italic">Xem thêm ...</a>
+                                                    <a href="/" onClick={(e) => { e.preventDefault(); props.seeMorePostLatest() }} className="text-center text-secondary font-italic">Xem thêm ...</a>
                                                 </div>
                                             </div>
                                         )}
@@ -182,10 +88,10 @@ export default function Home(props) {
                                 <div className="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav2">
                                     <div className="row">
                                         {renderPost(props.postCommon)}
-                                        {pageIndexCommon < (totalPageCommon - 1) && (
+                                        {props.pageIndexCommon < (props.totalPageCommon - 1) && (
                                             <div className="col-12">
                                                 <div className="d-flex justify-content-center">
-                                                    <a href="/" onClick={(e) => { e.preventDefault(); seeMorePostCommon() }} className="text-center text-secondary font-italic">Xem thêm ...</a>
+                                                    <a href="/" onClick={(e) => { e.preventDefault(); props.seeMorePostCommon() }} className="text-center text-secondary font-italic">Xem thêm ...</a>
                                                 </div>
                                             </div>
                                         )}
@@ -196,10 +102,10 @@ export default function Home(props) {
                                 <div className="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav3">
                                     <div className="row">
                                         {renderPost(props.postCheap)}
-                                        {pageIndexCheap < (totalPageCheap - 1) && (
+                                        {props.pageIndexCheap < (props.totalPageCheap - 1) && (
                                             <div className="col-12">
                                                 <div className="d-flex justify-content-center">
-                                                    <a href="/" onClick={(e) => { e.preventDefault(); seeMorePostCheap() }} className="text-center text-secondary font-italic">Xem thêm ...</a>
+                                                    <a href="/" onClick={(e) => { e.preventDefault(); props.seeMorePostCheap() }} className="text-center text-secondary font-italic">Xem thêm ...</a>
                                                 </div>
                                             </div>
                                         )}

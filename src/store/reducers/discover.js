@@ -3,32 +3,62 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
     postLatest: {},
     postCommon: {},
-    postCheap: {}
+    postCheap: {},
+    pageIndexLatest: 0,
+    totalPageLatest: 0,
+    pageIndexCommon: 0,
+    totalPageCommon: 0,
+    pageIndexCheap: 0,
+    totalPageCheap: 0
 }
 
 const discover = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.INIT_POST_LATEST:
-            state = {
-                postLatest: action.payload,
-                postCommon: state.postCommon,
-                postCheap: state.postCheap
+            return {
+                ...state,
+                postLatest: action.payload
             }
-            return state
         case actionTypes.INIT_POST_COMMON:
-            state = {
-                postLatest: state.postLatest,
-                postCommon: action.payload,
-                postCheap: state.postCheap
+            return {
+                ...state,
+                postCommon: action.payload
             }
-            return state
         case actionTypes.INIT_POST_CHEAP:
-            state = {
-                postLatest: state.postLatest,
-                postCommon: state.postCommon,
+            return {
+                ...state,
                 postCheap: action.payload
             }
-            return state
+        case actionTypes.UPDATE_PAGE_INDEX_LATEST:
+            return {
+                ...state,
+                pageIndexLatest: action.payload
+            }
+        case actionTypes.UPDATE_TOTAL_PAGE_LATEST:
+            return {
+                ...state,
+                totalPageLatest: action.payload
+            }
+        case actionTypes.UPDATE_PAGE_INDEX_COMMON:
+            return {
+                ...state,
+                pageIndexCommon: action.payload
+            }
+        case actionTypes.UPDATE_TOTAL_PAGE_COMMON:
+            return {
+                ...state,
+                totalPageCommon: action.payload
+            }
+        case actionTypes.UPDATE_PAGE_INDEX_CHEAP:
+            return {
+                ...state,
+                pageIndexCheap: action.payload
+            }
+        case actionTypes.UPDATE_TOTAL_PAGE_CHEAP:
+            return {
+                ...state,
+                totalPageCheap: action.payload
+            }
         default:
             return state
     }

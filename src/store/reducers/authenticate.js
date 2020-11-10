@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes'
 const authenticate = (state = { account: {}, logged: false }, action) => {
     switch (action.type) {
         case actionTypes.INIT_DATA_AUTHENTICATE:
-            state = {
+            return {
                 account: {
                     accountId: action.payload.accountId,
                     userName: action.payload.userName,
@@ -18,7 +18,11 @@ const authenticate = (state = { account: {}, logged: false }, action) => {
                 },
                 logged: action.logged
             }
-            return state
+        case actionTypes.REMOVE_DATA_AUTHENTICATE:
+            return {
+                account: {},
+                logged: action.logged
+            }
         default:
             return state
     }
