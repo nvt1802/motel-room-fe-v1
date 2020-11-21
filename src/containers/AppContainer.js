@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { authenticate } from '../store/actions/index'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import routes from '../containers/Routes'
-import Headers from '../containers/layout/HeaderContainer'
-import Footer from '../containers/layout/FooterContainer'
-import Search from '../containers/home/search/SearchContainer'
-import Login from '../containers/home/LoginContainer'
+import { BrowserRouter as Router, Switch } from "react-router-dom"
+import routes, { RouteWithSubRoutes } from './Routes'
 import AuthService from '../auth/AuthenticationService'
 import AccountAPI from '../api/AccountAPI'
+import Header from './layout/HeaderContainer'
+import Footer from './layout/FooterContainer'
+import Login from './home/LoginContainer'
+import Search from './home/search/SearchContainer'
+import '../assets/style/index.css'
 function AppContainer(props) {
 
     useEffect(() => {
@@ -35,40 +36,29 @@ function AppContainer(props) {
         }
     }, [props])
 
-    const RouteWithSubRoutes = (route) => {
-        return (<>
-            <Route
-                path={route.path}
-                exact={route.exact}
-                render={props => (<>
-                    <route.component {...props} routes={route.routes} />
-                </>)}
-            />
-        </>)
-    }
-
     return (<>
-        {
-            <Router>
-                <Headers />
+        <Router>
+            {!props.layout.adminPage && (<>
+                <Header />
                 <Search />
-                <Switch>
-                    <Switch>
-                        {routes.map((route, i) => (
-                            <RouteWithSubRoutes key={i} {...route} />
-                        ))}
-                    </Switch>
-                </Switch >
-                <Footer />
+            </>)}
+            <Switch>
+                {routes.map((route, i) => (
+                    <RouteWithSubRoutes key={i} {...route} />
+                ))}
+            </Switch >
+            {!props.layout.adminPage && (<>
                 <Login />
-            </Router >
-        }
+                <Footer />
+            </>)}
+        </Router >
     </>
     )
 }
 
 const mapStateToProps = state => ({
-    authenticate: state.authenticate
+    authenticate: state.authenticate,
+    layout: state.layout
 })
 
 const mapDispatchToProps = dispatch => ({

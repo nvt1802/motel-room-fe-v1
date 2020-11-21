@@ -1,8 +1,8 @@
 import * as actionTypes from './actionTypes'
 
-export const createAccount = (account) => {
+export const initAccount = (account) => {
     return {
-        type: actionTypes.CREATE_ACCOUNT,
+        type: actionTypes.INIT_ACCOUNT_MANAGEMENT,
         payload: account
     }
 }
